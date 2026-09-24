@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\UserCemeteryController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CemeterySelectionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeceasedController;
@@ -62,6 +63,12 @@ Route::middleware('auth')->group(function () {
 
         Route::patch('/user-cemeteries/{user}/{cemetery}', [UserCemeteryController::class, 'update'])
             ->name('user-cemeteries.update');
+
+        Route::get('/create-user',[UserController::class,'index'])
+            ->name('user.index');
+
+        Route::post('/create-user/store',[UserController::class,'store'])
+            ->name('user.store');        
     });
 });
 

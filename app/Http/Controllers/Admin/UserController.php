@@ -7,10 +7,13 @@ use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
 use Inertia\Inertia;
+use Inertia\Response;
+use App\Http\Controllers\Controller;
+
 
 class UserController extends Controller{
 
-	public function create(): Response
+	public function index(): Response
     {
         return Inertia::render('Admin/UserCreate');   
 

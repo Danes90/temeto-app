@@ -21,8 +21,6 @@ class HandleInertiaRequests extends Middleware
         $accessibleCemeteries = $user ? $user->accessibleCemeteries() : collect();
         $activeCemeteryId = $request->session()->get('active_cemetery_id');
 
-        // Ha nincs (még) kiválasztott temető, vagy a user már nem fér hozzá
-        // az eddig kiválasztotthoz, automatikusan az elsőt állítjuk be aktívnak.
         if ($user && (! $activeCemeteryId || ! $accessibleCemeteries->contains('id', $activeCemeteryId))) {
             $activeCemeteryId = $accessibleCemeteries->first()?->id;
             $request->session()->put('active_cemetery_id', $activeCemeteryId);
