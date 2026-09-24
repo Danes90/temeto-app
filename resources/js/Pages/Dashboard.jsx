@@ -25,7 +25,7 @@ export default function Dashboard({ activeCemetery }) {
                             <>
                                 <p>
                                     Jelenleg a(z) <strong>{activeCemetery.name}</strong>{' '}
-                                    temető adatait szerkeszted.
+                                    temető adatait szerkeszti.
                                 </p>
                                 <Link
                                     href={route('cemeteries.map', { cemetery: activeCemetery.id })}
@@ -35,12 +35,12 @@ export default function Dashboard({ activeCemetery }) {
                                 </Link>
                             </>
                         ) : (
-                            <p>Nincs elérhető temetőd. Kérj hozzáférést egy adminisztrátortól.</p>
+                            <p>Nincs elérhető temetője. Kérjen hozzáférést az adminisztrátortól.</p>
                         )}
 
                         {auth.user?.is_super_admin && (
                             <p className="mt-4 text-sm text-gray-500">
-                                Super adminként az összes temetőhöz hozzáférsz.
+                                Super adminként az összes temetőhöz hozzáfér.
                             </p>
                         )}
                     </div>

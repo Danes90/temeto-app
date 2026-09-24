@@ -7,7 +7,7 @@ import { useForm } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 
-export default function CreateUserForm({ className = '' }) {
+export default function CreateCemetery({ className = '' }) {
     const {
         data,
         setData,
@@ -18,15 +18,15 @@ export default function CreateUserForm({ className = '' }) {
         recentlySuccessful,
     } = useForm({
         name: '',
-        email: '',
-        password: '',
-        role: 'editor',
+        city: '',
+        address: '',
+        description: '',
     });
 
     const createUser = (e) => {
         e.preventDefault();
 
-        post(route('admin.user.store'), {
+        post(route('admin.cemetery.store'), {
             preserveScroll: true,
             onSuccess: () => reset(),
         });
@@ -36,22 +36,22 @@ export default function CreateUserForm({ className = '' }) {
         <AuthenticatedLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Felhasználó
+                    Temető
                 </h2>
             }
         >
-            <Head title="Felhasználó létrehozása" />
+            <Head title="Temető létrehozása" />
 
             <div className="py-12">
                 <div className="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
                      <section className={className}>
             <header>
                 <h2 className="text-lg font-medium text-gray-900">
-                    Felhasználó létrehozása
+                    Temető létrehozása
                 </h2>
 
                 <p className="mt-1 text-sm text-gray-600">
-                    Új Felhasználó létrehozása a megfelelő szerpkörrel
+                    Új Temető létrehozása
                 </p>
             </header>
 
@@ -81,78 +81,74 @@ export default function CreateUserForm({ className = '' }) {
                     />
                 </div>
 
-                {/* Email */}
                 <div>
                     <InputLabel
-                        htmlFor="email"
-                        value="Email"
+                        htmlFor="city"
+                        value="Település"
                     />
 
                     <TextInput
-                        id="email"
-                        value={data.email}
+                        id="city"
+                        value={data.city}
                         onChange={(e) =>
-                            setData('email', e.target.value)
+                            setData('city', e.target.value)
                         }
-                        type="email"
+                        type="text"
                         className="mt-1 block w-full"
-                        autoComplete="email"
+                        autoComplete="city"
                         required
                     />
 
                     <InputError
-                        message={errors.email}
+                        message={errors.city}
                         className="mt-2"
                     />
                 </div>
 
-                {/* Password */}
                 <div>
                     <InputLabel
-                        htmlFor="password"
-                        value="Jelszó"
+                        htmlFor="address"
+                        value="Cím"
                     />
 
                     <TextInput
-                        id="password"
-                        value={data.password}
+                        id="address"
+                        value={data.address}
                         onChange={(e) =>
-                            setData('password', e.target.value)
+                            setData('address', e.target.value)
                         }
-                        type="password"
+                        type="text"
                         className="mt-1 block w-full"
-                        autoComplete="new-password"
+                        autoComplete="address"
                         required
                     />
 
                     <InputError
-                        message={errors.password}
+                        message={errors.address}
                         className="mt-2"
                     />
                 </div>
 
-                {/* Role */}
                 <div>
                     <InputLabel
-                        htmlFor="role"
-                        value="Szerepkör"
+                        htmlFor="description"
+                        value="Leírás"
                     />
 
-                    <select
-                        id="role"
-                        value={data.role}
+                    <TextInput
+                        id="description"
+                        value={data.description}
                         onChange={(e) =>
-                            setData('role', e.target.value)
+                            setData('description', e.target.value)
                         }
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                    >
-                        <option value="editor">Editor</option>
-                        <option value="admin">Admin</option>
-                        <option value="super_admin">Super Admin</option>
-                    </select>
+                        type="text"
+                        className="mt-1 block w-full"
+                        autoComplete="description"
+                        required
+                    />
 
                     <InputError
-                        message={errors.role}
+                        message={errors.description}
                         className="mt-2"
                     />
                 </div>
@@ -160,7 +156,7 @@ export default function CreateUserForm({ className = '' }) {
                 {/* Submit */}
                 <div className="flex items-center gap-4">
                     <PrimaryButton disabled={processing}>
-                        Felhasználó létrehozása
+                        Temető létrehozása
                     </PrimaryButton>
 
                     <Transition
@@ -171,7 +167,7 @@ export default function CreateUserForm({ className = '' }) {
                         leaveTo="opacity-0"
                     >
                         <p className="text-sm text-gray-600">
-                            Felhasználó létrehozva
+                            Temető létrehozva
                         </p>
                     </Transition>
                 </div>

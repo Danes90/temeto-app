@@ -9,6 +9,7 @@ use App\Models\User;
 use Inertia\Inertia;
 use Inertia\Response;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 
 class UserController extends Controller{
@@ -19,7 +20,7 @@ class UserController extends Controller{
 
     }
 
-    public function store(Request $request):RedirectResponse{
+    public function store(Request $request){
        $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
@@ -33,7 +34,7 @@ class UserController extends Controller{
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect(route('user-cemeteries.index', absolute: false));
+        //return redirect(route('dashboard', absolute: false));
     }
 
 }

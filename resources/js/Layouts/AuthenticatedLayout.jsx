@@ -30,6 +30,23 @@ export default function AuthenticatedLayout({ header, children }) {
                                 >
                                     Vezérlőpúlt
                                 </NavLink>
+                                {user.role === 'super_admin' && (
+                                    <>
+                                        <NavLink
+                                            href={route('admin.user.index')}
+                                            active={route().current('user.index')}
+                                        >
+                                            Felhasználó létrehozás
+                                        </NavLink>
+
+                                        <NavLink
+                                            href={route('admin.cemeteries.index')}
+                                            active={route().current('admin.cemeteries.index')}
+                                        >
+                                            Temetők
+                                        </NavLink>
+                                    </>
+                                )}
                             </div>
                         </div>
 

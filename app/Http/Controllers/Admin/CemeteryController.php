@@ -2,12 +2,12 @@
 namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Inertia\Response;
 use App\Models\Cemetery;
-use App\Models\User;
-use Illuminate\Http\RedirectResponse;
+use Inertia\Response;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
-class UserCemeteryController extends Controller{
+class CemeteryController extends Controller{
 
 	public function index():Response{
 		$cemeteries = Cemetery::query()
@@ -18,7 +18,11 @@ class UserCemeteryController extends Controller{
         ]);    
 	}
 
-	public function store(Request $request):RedirectResponse{
+    public function create():Response{
+        return Inertia::render('Admin/CreateCemetery');
+    }
+
+	public function store(Request $request){
 
 		$validated = $request->validate([
             'name' => ['required'],
@@ -26,19 +30,13 @@ class UserCemeteryController extends Controller{
      		'address' => ['required']
         ]);
 
-        $user = User::find(1);
-
-        $cemetery = Cemetery::save(
-        	'name' => $request->name,
-        	'city' => $request->city,
-        	'address' => $request->address,
-        	'description' => $request->description,
-        	'slug' => str_slug($request->name,'-')
-        );
-
-        $user->cemeteries()->detach($cemetery->id);
-
-		return back();
+        Cemetery::create([
+            'name' => $request->name,
+            'city' => $request->city,
+            'slug' => Str::slug($request->name),
+            'address' => $request->address,
+            'description' => $request->description,
+        ]);
 	}
 
 }
