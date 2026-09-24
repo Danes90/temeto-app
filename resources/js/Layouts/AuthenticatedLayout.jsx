@@ -34,17 +34,22 @@ export default function AuthenticatedLayout({ header, children }) {
                                     <>
                                         <NavLink
                                             href={route('admin.user.index')}
-                                            active={route().current('user.index')}
+                                            active={route().current('admin.user.index')}
                                         >
                                             Felhasználó létrehozás
                                         </NavLink>
-
                                         <NavLink
                                             href={route('admin.cemeteries.index')}
                                             active={route().current('admin.cemeteries.index')}
                                         >
                                             Temetők
                                         </NavLink>
+                                        <NavLink
+                                            href={route('admin.user-cemeteries.index')}
+                                            active={route().current('admin.user-cemeteries.index')}
+                                        >
+                                            Felhasználók jogusúltság kezelés
+                                        </NavLink>    
                                     </>
                                 )}
                             </div>
