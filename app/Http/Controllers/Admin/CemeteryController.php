@@ -5,6 +5,7 @@ use Inertia\Inertia;
 use App\Models\Cemetery;
 use Inertia\Response;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
 
 class CemeteryController extends Controller{
@@ -38,5 +39,17 @@ class CemeteryController extends Controller{
             'description' => $request->description,
         ]);
 	}
+
+    public function setStatus(Request $request):RedirectResponse
+    {
+
+
+        $active = (int)$request->active;
+        $cemeteryId = $request->cemeteryId;
+
+        Cemetery::whereId($cemeteryId)->update(["is_active" => $active]);
+
+        return back();
+    }
 
 }

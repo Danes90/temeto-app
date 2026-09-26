@@ -78,7 +78,12 @@ Route::middleware('auth')->group(function () {
             ->name('cemetery.create');
 
         Route::post('/cemetery/store',[CemeteryController::class,'store'])
-            ->name('cemetery.store');                  
+            ->name('cemetery.store');
+
+        Route::patch('/cemetery/set-status/', [CemeteryController::class, 'setStatus'])
+            ->name('cemeteries.set-status');                 
+
+
     });
 });
 
