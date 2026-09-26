@@ -1,7 +1,19 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import { Head,router } from '@inertiajs/react';
 
 export default function CemeteryList({ cemeteries }) {
+
+    const toggle = (cemetery) => {
+        router.visit(route('admin.cemeteries.set-status'), {
+                method: 'patch',
+                data: {
+                cemeteryId: cemetery.id,
+                active: !cemetery.is_active,
+            },
+        preserveScroll: true,
+        });
+    };
+
     return (
         <AuthenticatedLayout
             header={
@@ -60,8 +72,15 @@ export default function CemeteryList({ cemeteries }) {
                                         <td className="px-4 py-2">
                                             {cemetery.description}
                                         </td>
-                                        <td className="px-4 py-2">
-                                            (aktivitás állitása)
+                                       <td className="px-4 py-2">
+                                            <input
+                                            type="checkbox"
+                                            checked={cemetery.is_active}
+                                            onChange={() =>
+                                            toggle(cemetery)
+                                            }
+                                            className="h-4 w-4"
+                                            />
                                         </td>
                                     </tr>
                                 ))}
