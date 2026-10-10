@@ -9,6 +9,8 @@ use App\Http\Controllers\DeceasedController;
 use App\Http\Controllers\GraveController;
 use App\Http\Controllers\ParcelController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FreeGraveListController;
+use App\Http\Controllers\AllGraveListController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -55,6 +57,12 @@ Route::middleware('auth')->group(function () {
                 ->name('parcels.graves.deceased.update');
             Route::delete('/parcels/{parcel}/graves/{grave}/deceased/{deceased}', [DeceasedController::class, 'destroy'])
                 ->name('parcels.graves.deceased.destroy');
+
+            //Sírhely listák
+            Route::get('free-grave-list',[FreeGraveListController::class,'index'])
+                ->name('free.grave.list');
+            Route::get('all-grave-list',[AllGraveListController::class,'index'])
+                ->name('all.grave.list');        
         });
 
     // Csak super admin: felhasználó–temető hozzárendelések kezelése (checkbox-mátrix).
