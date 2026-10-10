@@ -30,6 +30,23 @@ export default function AuthenticatedLayout({ header, children }) {
                                 >
                                     Vezérlőpúlt
                                 </NavLink>
+                                <NavLink
+                                    href={route('free.grave.list')}
+                                    active={route().current('free.grave.list')}
+                                >
+                                    Szabad sírhelyek    
+                                </NavLink>
+                                <Navlink
+                                    href={route('all.grave.list')}
+                                    active={route().current('all.grave.list')}
+                                >
+                                    Összes sírhely    
+                                </NavLink> 
+                                <Navlink
+                                   
+                                >
+                                    Sírhely típusok    
+                                </NavLink>    
                                 {user.role === 'super_admin' && (
                                     <>
                                         <NavLink
