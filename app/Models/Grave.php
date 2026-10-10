@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Grave extends Model
 {
@@ -37,5 +38,9 @@ class Grave extends Model
     public function deceased(): HasMany
     {
         return $this->hasMany(Deceased::class);
+    }
+
+    public function type():HasOne{
+        return $this->hasOne(GraveType::class);
     }
 }
