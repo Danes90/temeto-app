@@ -60,7 +60,7 @@ export default function DeceasedPanel({ cemetery, parcel, grave, onClose }) {
                             </button>
                         </div>
                         <div className="text-xs text-gray-500">
-                            {d.birth_date ?? '?'} – {d.death_date ?? '?'}
+                           {d.birth_date?.split('T')[0] ?? '?'} – {d.death_date?.split('T')[0] ?? '?'}
                         </div>
                         {d.notes && <div className="mt-1 text-xs text-gray-500">{d.notes}</div>}
                     </div>
